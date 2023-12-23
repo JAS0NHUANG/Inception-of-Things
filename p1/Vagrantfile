@@ -1,0 +1,28 @@
+Vagrant.configure("2") do |config|
+  # Global settings
+  config.vm.box = "ubuntu/mantic64"
+  config.vm.box_check_update = false
+  config.vm.provider "virtualbox" do |vb|
+    vb.memory = "512"
+    vb.cpus = "1"
+  end
+
+  # Server VM
+  config.vm.define "jahuangS" do |jahuangS|
+    jahuangS.vm.hostname = "jahuangS"
+    jahuangS.vm.network "private_network", \
+      type: "static", \
+      ip: "192.168.56.110", \
+      hostname: true
+  end
+
+  # Server Worker VM
+  config.vm.define "jahuangSW" do |jahuangSW|
+    jahuangSW.vm.hostname = "jahuangSW"
+    jahuangSW.vm.network "private_network", \
+      type: "static", \
+      ip: "192.168.56.111", \
+      hostname: true
+  end
+  
+end
